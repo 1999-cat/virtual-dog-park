@@ -66,6 +66,52 @@
       </div>
     </section>
 
+    <section class="my-dog" id="myDog">
+      <h2>My Virtual Dog</h2>
+      <p class="section-intro">
+        Adopt a puppy and take care of it. Choose a breed, give it a name, then use Feed and Play
+        to keep it happy. Use Next Day to let time pass (the dog grows up and gets a little less
+        happy), or Start Over to adopt a new dog.
+      </p>
+
+      <form id="adoptForm" class="adopt-form">
+        <div class="field">
+          <span class="field-label" id="breedLabel">Breed:</span>
+          <label><input type="radio" name="breed" value="Beagle" checked> Beagle</label>
+          <label><input type="radio" name="breed" value="Golden Retriever"> Golden Retriever</label>
+          <label><input type="radio" name="breed" value="Poodle"> Poodle</label>
+        </div>
+
+        <div class="field">
+          <label for="dogName">Dog name:</label>
+          <input type="text" id="dogName" name="dogName" maxlength="20" placeholder="e.g. Biscuit">
+        </div>
+
+        <button type="submit" id="adoptBtn">Adopt 🐾</button>
+      </form>
+
+      <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+      <!-- This card appears only after a dog is adopted -->
+      <div id="dogCard" class="dog-card" hidden>
+        <h3 id="dogCardName"></h3>
+        <ul class="dog-stats">
+          <li>Breed: <span id="dogBreed"></span></li>
+          <li>Day: <span id="dogDay"></span></li>
+          <li>Growth stage: <span id="dogStage"></span></li>
+          <li>Happiness: <span id="dogHappiness"></span> / 100</li>
+        </ul>
+        <div class="dog-actions">
+          <button type="button" id="feedBtn">🍖 Feed</button>
+          <button type="button" id="playBtn">🎾 Play</button>
+        </div>
+        <div class="dog-actions">
+          <button type="button" id="nextDayBtn">📅 Next Day</button>
+          <button type="button" id="startOverBtn">↺ Start Over</button>
+        </div>
+      </div>
+    </section>
+
     <section class="play">
       <h2>Want to play?</h2>
       <p>There is also a small dog-park game you can try.</p>

@@ -31,3 +31,123 @@ randomBtn.addEventListener("click", function () {
     }
   });
 });
+
+/* ===========================================================
+   My Virtual Dog section
+   =========================================================== */
+
+// Grab the elements we need from the page.
+const adoptForm = document.getElementById("adoptForm");
+const dogNameInput = document.getElementById("dogName");
+const formMessage = document.getElementById("formMessage");
+const dogCard = document.getElementById("dogCard");
+const dogCardName = document.getElementById("dogCardName");
+const dogBreed = document.getElementById("dogBreed");
+const dogDay = document.getElementById("dogDay");
+const dogStage = document.getElementById("dogStage");
+const dogHappiness = document.getElementById("dogHappiness");
+const feedBtn = document.getElementById("feedBtn");
+const playBtn = document.getElementById("playBtn");
+const nextDayBtn = document.getElementById("nextDayBtn");
+const startOverBtn = document.getElementById("startOverBtn");
+
+// The longest name we allow.
+const MAX_NAME_LENGTH = 20;
+
+// This object holds the dog we are looking after.
+// It stays empty until a dog is adopted.
+let myDog = null;
+
+// Find which breed radio button is currently selected.
+function getSelectedBreed() {
+  const chosen = document.querySelector('input[name="breed"]:checked');
+  return chosen ? chosen.value : "";
+}
+
+// Put the dog's details on the page.
+// We use textContent so the name is shown as plain text, never as HTML.
+// This keeps the page safe even if the name contains odd characters.
+function renderDog() {
+  dogCardName.textContent = myDog.name;
+  dogBreed.textContent = myDog.breed;
+  dogDay.textContent = myDog.day;
+  dogStage.textContent = myDog.stage;
+  dogHappiness.textContent = myDog.happiness;
+}
+
+// Work out the growth stage from the current day number.
+// Days 1-3 = Puppy, 4-6 = Young, 7 and up = Adult.
+function stageForDay(day) {
+  if (day <= 3) return "Puppy";
+  if (day <= 6) return "Young";
+  return "Adult";
+}
+
+// Raise happiness by the given amount, but never above 100.
+function increaseHappiness(amount) {
+  myDog.happiness = myDog.happiness + amount;
+  if (myDog.happiness > 100) {
+    myDog.happiness = 100;
+  }
+  renderDog();
+}
+
+// When the Adopt form is submitted, check the name then create the dog.
+adoptForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // stop the page from reloading
+
+  const name = dogNameInput.value.trim(); // drop spaces at start and end
+
+  // Rule 1: the name must not be empty after trimming.
+  if (name === "") {
+    formMessage.textContent = "Please enter a name for your dog.";
+    return;
+  }
+  // Rule 2: the name must be 20 characters or fewer.
+  if (name.length > MAX_NAME_LENGTH) {
+    formMessage.textContent = "That name is too long. Please use 20 characters or fewer.";
+    return;
+  }
+
+  // The name is valid, so create the new dog.
+  myDog = {
+    name: name,
+    breed: getSelectedBreed(),
+    day: 1,
+    stage: stageForDay(1), // a new dog always starts as a Puppy
+    happiness: 50,
+  };
+
+  formMessage.textContent = "";   // clear any old message
+  dogCard.hidden = false;         // show the dog card
+  renderDog();                    // fill in the details
+});
+
+// Feed and Play each raise happiness by 10 (capped at 100).
+feedBtn.addEventListener("click", function () { increaseHappiness(10); });
+playBtn.addEventListener("click", function () { increaseHappiness(10); });
+
+// Next Day: move forward one day. The dog grows up and gets a little
+// less happy, because a new day means it is hungry and bored again.
+// Happiness can never drop below 0.
+function nextDay() {
+  myDog.day = myDog.day + 1;
+  myDog.stage = stageForDay(myDog.day);
+  myDog.happiness = myDog.happiness - 20;
+  if (myDog.happiness < 0) {
+    myDog.happiness = 0;
+  }
+  renderDog();
+}
+
+// Start Over: forget the current dog and show the adoption form again
+// so the visitor can adopt a brand-new puppy.
+function startOver() {
+  myDog = null;
+  dogNameInput.value = "";        // clear the old name
+  formMessage.textContent = "";   // clear any message
+  dogCard.hidden = true;          // hide the dog card
+}
+
+nextDayBtn.addEventListener("click", nextDay);
+startOverBtn.addEventListener("click", startOver);
