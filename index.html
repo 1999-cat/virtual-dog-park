@@ -70,8 +70,9 @@
       <h2>My Virtual Dog</h2>
       <p class="section-intro">
         Adopt a puppy and take care of it. Choose a breed, give it a name, then use Feed and Play
-        to keep it happy. Use Next Day to let time pass (the dog grows up and gets a little less
-        happy), or Start Over to adopt a new dog.
+        to keep it happy. Use Next Day to let time pass (the dog grows up and gets 5 points less
+        happy), or Start Over to adopt a new dog. Your dog is saved automatically, so it is still
+        there after you refresh the page.
       </p>
 
       <form id="adoptForm" class="adopt-form">
@@ -95,6 +96,11 @@
       <!-- This card appears only after a dog is adopted -->
       <div id="dogCard" class="dog-card" hidden>
         <h3 id="dogCardName"></h3>
+        <img id="dogImage" class="dog-image" alt="" width="120">
+        <div class="growth">
+          <span class="growth-label">Growth</span>
+          <div class="growth-bar"><div id="growthFill" class="growth-fill"></div></div>
+        </div>
         <ul class="dog-stats">
           <li>Breed: <span id="dogBreed"></span></li>
           <li>Day: <span id="dogDay"></span></li>

@@ -149,9 +149,33 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 20px 40px; }
   border-radius: 14px;
 }
 .dog-card h3 { margin: 0 0 10px; color: var(--accent-dark); }
+.dog-image {
+  display: block;
+  margin: 0 auto 12px;
+  /* width is set by JavaScript based on the growth stage */
+}
+.growth { margin: 0 auto 14px; max-width: 320px; }
+.growth-label {
+  display: block;
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.growth-bar {
+  height: 14px;
+  background: #d7e6d8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.growth-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width .25s;
+}
 .dog-stats { margin: 0; padding-left: 18px; }
 .dog-stats li { margin-bottom: 6px; }
-.dog-actions { margin-top: 14px; display: flex; gap: 12px; }
+.dog-actions { margin-top: 14px; display: flex; gap: 12px; flex-wrap: wrap; }
 .dog-actions button {
   background: #fff;
   color: var(--accent-dark);
