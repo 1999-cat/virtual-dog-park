@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Dog Park</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>🐶 Virtual Dog Park</h1>
+    <p class="welcome">
+      Welcome to the Virtual Dog Park! This is a friendly little website where you can
+      meet three popular dog breeds and learn what makes each one special. Grab a lead
+      and explore!
+    </p>
+  </header>
+
+  <main>
+    <section class="encyclopedia">
+      <h2>Dog Encyclopedia</h2>
+      <p class="section-intro">
+        Here are three great breeds. Each card shows a simple drawing plus easy notes
+        about its size, personality, and everyday care.
+      </p>
+
+      <div class="breed-grid">
+        <!-- Beagle -->
+        <article class="breed-card" data-breed="Beagle">
+          <img class="breed-img" src="assets/beagle.svg" alt="Illustration of a Beagle">
+          <h3>Beagle</h3>
+          <ul class="breed-facts">
+            <li><strong>Size:</strong> Small. About 33–41 cm tall and 9–11 kg.</li>
+            <li><strong>Personality:</strong> Happy, curious, and friendly. Loves to sniff and follow scents.</li>
+            <li><strong>Everyday care:</strong> Needs daily walks and play. Brush once a week. Keep it on a lead—its nose loves to wander!</li>
+          </ul>
+        </article>
+
+        <!-- Golden Retriever -->
+        <article class="breed-card" data-breed="Golden Retriever">
+          <img class="breed-img" src="assets/golden-retriever.svg" alt="Illustration of a Golden Retriever">
+          <h3>Golden Retriever</h3>
+          <ul class="breed-facts">
+            <li><strong>Size:</strong> Large. About 51–61 cm tall and 25–34 kg.</li>
+            <li><strong>Personality:</strong> Gentle, clever, and eager to please. Great with families and children.</li>
+            <li><strong>Everyday care:</strong> Needs lots of exercise and brushing two or three times a week. Loves games like fetch.</li>
+          </ul>
+        </article>
+
+        <!-- Poodle -->
+        <article class="breed-card" data-breed="Poodle">
+          <img class="breed-img" src="assets/poodle.svg" alt="Illustration of a Poodle">
+          <h3>Poodle</h3>
+          <ul class="breed-facts">
+            <li><strong>Size:</strong> Varies. Toy is tiny (under 28 cm); Standard is large (over 45 cm).</li>
+            <li><strong>Personality:</strong> Smart, proud, and lively. Learns tricks quickly and loves attention.</li>
+            <li><strong>Everyday care:</strong> Needs regular grooming and clipping. Daily play keeps its busy mind happy.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- Simple, optional interaction -->
+      <div class="picker">
+        <button id="randomBtn" type="button">🎲 Surprise me with a random breed</button>
+        <p id="pickerResult" class="picker-result" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="play">
+      <h2>Want to play?</h2>
+      <p>There is also a small dog-park game you can try.</p>
+      <a class="play-link" href="game.html">▶ Play the Dog Park game</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with HTML, CSS, and JavaScript. 🐾</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
